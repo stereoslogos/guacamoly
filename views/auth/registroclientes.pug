@@ -1,0 +1,21 @@
+extends ../layout/index
+block logo
+  img(src="https://i.ibb.co/LP4YSG5/Logo.png", alt="logo" class="logo")
+  a(class='btnGuardar side' href="registroclientes" type="submit") Clientes
+  a(class='btnGuardar side' href='registroproductos' type="submit") Productos
+
+block formulario
+  h1 Clientes
+  form(class='formulario' action="/auth/registroclientes" method="POST") 
+    input(class='form-item' id="nombre" name="nombre" placeholder="Nombre" type="text" value= cliente ? cliente.nombre : '')
+    input(class='form-item' id="apellido" name="apellido" placeholder="Apellido" type="text" value= cliente ? cliente.apellido : '')
+    input(class='form-item' id="documento" name="documento" placeholder="Documento" type="text" value= cliente ? cliente.documento : '')
+    input(class='form-item' id="correo" name="correo" placeholder="Correo" type="email" value= cliente ? cliente.correo : '')
+    input(class='form-item' id="direccion" name="direccion" placeholder="Direccion" type="text" value= cliente ? cliente.direccion : '')
+    input(class='form-item' id="telefono" name="telefono" placeholder="Telefono" type="text" value= cliente ? cliente.telefono : '')
+
+    input(class='btnGuardar' id="btnGuardar" value="Guardar" type="submit")
+  if errores 
+    section(class='errores')
+      each error in errores
+        p=error.msg
